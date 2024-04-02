@@ -4,14 +4,14 @@ import boardgame.Position;
 import chess.ChessPiece;
 import chess.Color;
 
-public class Rook extends ChessPiece {
-	public Rook(Board board, Color color) {
+public class Queen extends ChessPiece {
+	public Queen(Board board, Color color) {
 		super(board, color);
 	}
 	
 	@Override
 	public String toString() {
-		return "R";
+		return "Q";
 	}
 	
 	public boolean[][] possibleMoves() {
@@ -56,6 +56,46 @@ public class Rook extends ChessPiece {
 		if (getBoard().positionExists(p) && isThereOpponent(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
+		
+		//nw
+		p.setValues(position.getRow()-1, position.getColumn()-1);
+			while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+			p.setValues(p.getRow()-1, p.getColumn()-1);
+			}
+		if (getBoard().positionExists(p) && isThereOpponent(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+				
+		//ne
+		p.setValues(position.getRow()-1, position.getColumn()+1);
+		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+			p.setValues(p.getRow()-1, p.getColumn()+1);
+		}	
+		if (getBoard().positionExists(p) && isThereOpponent(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+				
+		//se
+		p.setValues(position.getRow()+1, position.getColumn()+1);
+		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+			p.setValues(p.getRow()+1, p.getColumn()+1);
+		}	
+		if (getBoard().positionExists(p) && isThereOpponent(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+
+		//sw
+		p.setValues(position.getRow()+1, position.getColumn()-1);
+			while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+				p.setValues(p.getRow()+1, p.getColumn()-1);
+			}
+			if (getBoard().positionExists(p) && isThereOpponent(p)) {
+				mat[p.getRow()][p.getColumn()] = true;
+			}
 				
 		return mat;
 	}
